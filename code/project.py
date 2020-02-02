@@ -1,24 +1,7 @@
-from mpl_toolkits.mplot3d import Axes3D
 import plotly.express as px
 import pandas
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-df = pandas.read_csv("russian_demography.csv", usecols=[
-    "year", "birth_rate", "death_rate", "gdw", "urbanization", "npg", "region"])
-
-for i in df.year.unique():
-    fig = plt.figure(num=None, figsize=(15, 6), dpi=100,
-                     facecolor='w', edgecolor='k')
-    sns.catplot(x="region", y="npg", data=df[df['year'] == i])
-    plt.ylim(-15, 20)
-    plt.xticks(fontsize=5)
-    plt.xticks(rotation=90)
-    plt.savefig(f"render/scatter_plot_{i}.png")
-    plt.close()
-
-
-exit(0)
 
 
 def main():
@@ -29,7 +12,7 @@ def main():
     if (visu == "1"):
         visu_parallel_coordinates()
     elif (visu == "2"):
-        print("TODO")
+        visu_categorical_scatterplot()
     elif (visu == "3"):
         print("TODO")
     exit(0)
@@ -56,12 +39,30 @@ def visu_parallel_coordinates():
     fig.show()
 
 
+def visu_categorical_scatterplot():
+    df = pandas.read_csv("dataset/data.csv", usecols=[
+        "year", "birth_rate", "death_rate", "gdw", "urbanization", "npg", "region"])
+    for i in df.year.unique():
+        sns.catplot(x="region", y="npg", data=df[df['year'] == i])
+        plt.ylim(-15, 20)
+        plt.xticks(fontsize=5)
+        plt.xticks(rotation=90)
+        plt.savefig(f"render/scatter_plot_{i}.png")
+        plt.close()
+    sns.catplot(x="region", y="npg", data=df)
+    plt.ylim(-15, 20)
+    plt.xticks(fontsize=5)
+    plt.xticks(rotation=90)
+    plt.show()
+    plt.close()
+
+
 def select_visu():
     print("[Russian Demography Data]")
     print("----------------------------------------------------")
     print("Enter one of the following number to visualize data:")
     print("1 - Display the parallel coordinates")
-    print("2 - ")
+    print("2 - Generate and display categorical scatterplot")
     print("----------------------------------------------------")
     return input()
 
