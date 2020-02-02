@@ -3,28 +3,40 @@ import pandas
 import matplotlib.pyplot as plt
 
 labels = {
-    "year": "Année",
-    "npg": "npg",
-    "birth_rate": "Taux de naissance",
-    "death_rate": "Taux de decès",
-    "gdw": "Poids démographique",
-    "urbanization": "Urbanisation"
+    "year": "Year",
+    "npg": "NPG",
+    "birth_rate": "Birth rate",
+    "death_rate": "Death rate",
+    "gdw": "Demographic weight",
+    "urbanization": "Urbanization"
 }
 
 
 def main():
     visu = select_visu()
     while (visu not in ["1", "2", "3"]):
-        print("Undefined visualization, please select amoung the possible visualizations")
+        print("Undefined visualization, please select among the possible visualizations.")
         visu = select_visu()
-    if (visu == "1"):
-        print("visu 1")
+    if (visu == "1"): 
+        print("Parallel Coordinates")
     elif (visu == "2"):
-        print("visu 2")
+        print("TODO")
     elif (visu == "3"):
-        print("visu 3")
+        print("TODO")
     exit(0)
 
+def select_visu():
+    print("[Russian Demography Data]")
+    print("----------------------------------------------------")
+    print("Enter one of the following number to visualize data:")
+    print("1 - Display the parallel coordinates")
+    print("2 - ")
+    print("----------------------------------------------------")
+    return input()
+
+
+if __name__ == "__main__":
+    main()
 
 # df = pandas.read_csv("russian_demography.csv", usecols=[
 #     "year", "birth_rate", "death_rate", "gdw", "urbanization"])
@@ -37,17 +49,3 @@ def main():
 #                               range_color=[1990, 2017])
 # fig.show()
 # # fig.write_image("parallel_coordinate_plot.pdf")
-
-
-def select_visu():
-    print("[Russian Demogaphy Data]")
-    print("----------------------------------------------------")
-    print("Enter one of the following number to visualize data:")
-    print("1 - Display the parallel coordinates")
-    print("2 - ")
-    print("----------------------------------------------------")
-    return input()
-
-
-if __name__ == "__main__":
-    main()
