@@ -8,8 +8,12 @@ df = pandas.read_csv("russian_demography.csv", usecols=[
     "year", "birth_rate", "death_rate", "gdw", "urbanization", "npg", "region"])
 
 for i in df.year.unique():
+    fig = plt.figure(num=None, figsize=(15, 6), dpi=100,
+                     facecolor='w', edgecolor='k')
     sns.catplot(x="region", y="npg", data=df[df['year'] == i])
     plt.ylim(-15, 20)
+    plt.xticks(fontsize=5)
+    plt.xticks(rotation=90)
     plt.savefig(f"render/scatter_plot_{i}.png")
     plt.close()
 
@@ -20,14 +24,14 @@ exit(0)
 def main():
     visu = select_visu()
     while (visu not in ["1", "2", "3"]):
-        print("Undefined visualization, please select amoung the possible visualizations")
+        print("Undefined visualization, please select among the possible visualizations.")
         visu = select_visu()
     if (visu == "1"):
         visu_parallel_coordinates()
     elif (visu == "2"):
-        print("visu 2")
+        print("TODO")
     elif (visu == "3"):
-        print("visu 3")
+        print("TODO")
     exit(0)
 
 
@@ -52,21 +56,8 @@ def visu_parallel_coordinates():
     fig.show()
 
 
-def visu2():
-    cat = ["bored", "happy", "bored", "bored", "happy", "bored"]
-    dog = ["happy", "happy", "happy", "happy", "bored", "bored"]
-    activity = ["combing", "drinking", "feeding",
-                "napping", "playing", "washing"]
-    fig, ax = plt.subplots()
-    ax.plot(activity, dog, label="dog")
-    # ax.plot(activity, cat, label="cat")
-    ax.legend()
-
-    plt.show()
-
-
 def select_visu():
-    print("[Russian Demogaphy Data]")
+    print("[Russian Demography Data]")
     print("----------------------------------------------------")
     print("Enter one of the following number to visualize data:")
     print("1 - Display the parallel coordinates")
