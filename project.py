@@ -1,6 +1,20 @@
+from mpl_toolkits.mplot3d import Axes3D
 import plotly.express as px
 import pandas
 import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pandas.read_csv("russian_demography.csv", usecols=[
+    "year", "birth_rate", "death_rate", "gdw", "urbanization", "npg", "region"])
+
+for i in df.year.unique():
+    sns.catplot(x="region", y="npg", data=df[df['year'] == i])
+    plt.ylim(-15, 20)
+    plt.savefig(f"render/scatter_plot_{i}.png")
+    plt.close()
+
+
+exit(0)
 
 
 def main():
